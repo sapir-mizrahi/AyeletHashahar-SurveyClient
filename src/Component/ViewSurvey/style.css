@@ -1,0 +1,71 @@
+.view-survey-main {
+    background-color: #f8f9fa;
+}
+
+.view-survey-header {
+    width: 70%;
+    margin: auto;
+    background-color: white;
+    margin: 30px auto;
+    border: 1px solid #b4afaf;
+    border-radius: 9px 9px 0 0;
+    padding: 20px;
+}
+
+.survey-title {
+    font-size: 30px;
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+
+.survey-sub-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #7e7a7a;
+    padding-bottom: 10px;
+}
+
+.survey-company-name {
+    text-align: left;
+}
+
+.view-survey-questions {
+    background-color: white;
+    width: 70%;
+    margin: 20px auto;
+    border: 1px solid #bab8b8;
+    border-radius: 10px 10px 0 0;
+    padding: 20px;
+}
+.q-div{
+    margin: 10px;
+    text-align: left;   
+}
+.multi-que{
+    display: flex;
+    flex-direction: column;
+}
+.question-title{
+font-size: 20px;
+}
+.form-check-input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.form-check-input[type=radio] {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.form-check-input:checked{
+    background-color: #8e9093 !important;
+    border-color:  #8e9093 !important;
+}
+.multi-item{
+    display: flex;
+    margin: 10px 0;
+
+}

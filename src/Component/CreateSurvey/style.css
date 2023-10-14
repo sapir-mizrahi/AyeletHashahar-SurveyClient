@@ -1,0 +1,128 @@
+.main-div-create-survey {
+    background-color: #f9f9f9;
+    padding: 0 40px;
+}
+h2{
+    margin: 27px;
+    color: #553077 !important;
+}
+.first-part-header {
+    
+}
+.label-title{
+    font-weight: 500;
+    font-size: 18px;
+    margin: 5px 0;
+
+}
+.left-content-header {
+    background-color: white;
+    padding: 20px 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+        
+}
+
+.title-input {
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid rgb(170, 169, 172);
+}
+
+.main-part {
+    padding: 30px 0;
+}
+
+.main-part-content {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+}
+.lable-q {
+    color: #157b7e;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 5px 0;
+}
+.new-question{
+    display: flex;
+    flex-direction: column;
+}
+.btn-add-ans{
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #579092;
+}
+.li-ans{
+    margin: 5px 0;
+}
+.label-rating{
+    color: #751c9d;
+}
+.btn-add-question{
+    height: 80px;
+    margin: 30px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+/* .header-survey {
+    color: #67105f;
+}
+.left-side{
+    background-color: antiquewhite;
+}
+.left-content{
+    width: 80%;
+    background-color: white;
+    border: 1px solid #aeadad;
+    height: 90%;
+    margin: 20px auto;
+    border-radius: 10px;
+
+}
+
+.create-survey-main {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    background-color: white;
+    width: 70%;
+    margin: auto;
+}
+
+
+
+input {
+    height: 23px;
+    font-size: 18px;
+    margin: 5px;
+    border-radius: 4px;
+    text-align: center;
+    border-color: #8f8b8b;
+}
+
+input[type=checkbox] {
+    width: 30px;
+}
+
+select {
+    height: 23px;
+    font-size: 18px;
+    margin: 5px;
+    border-radius: 4px;
+    text-align: center;
+    border-color: #8f8b8b;
+}
+
+button {
+    width: 131px;
+    height: 37px;
+    font-size: 17px;
+    background-color: #530c4c;
+    border-radius: 8px;
+    color: #c9c8c8;
+} */
