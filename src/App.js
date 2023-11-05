@@ -50,12 +50,12 @@ function App() {
                 <li onClick={() => setCurrentPage(window.location.pathname)} className={currentPage === '/view' && 'current-path-li'}>
                   <Link className={currentPage === '/view' && 'current-path'} to="/view">Surveys</Link>
                 </li>
-                <li onClick={() => setCurrentPage(window.location.pathname)} className={currentPage === '/Signin' && 'current-path-li'}>
+                {!userDetails &&<li onClick={() => setCurrentPage(window.location.pathname)} className={currentPage === '/Signin' && 'current-path-li'}>
                   <Link className={currentPage === '/Signin' && 'current-path'} to="/Signin">Signin</Link>
-                </li>
-                <li onClick={() => setCurrentPage(window.location.pathname)} className={currentPage === '/SignUp' && 'current-path-li'}>
+                </li>}
+                {!userDetails &&<li onClick={() => setCurrentPage(window.location.pathname)} className={currentPage === '/SignUp' && 'current-path-li'}>
                   <Link className={currentPage === '/SignUp' && 'current-path'} to="/SignUp">SignUp</Link>
-                </li>
+                </li>}
                 <li onClick={() => setCurrentPage(window.location.pathname)} className={currentPage === '/Statistic' && 'current-path-li'}>
                   <Link className={currentPage === '/Statistic' && 'current-path'} to="/Statistic">Statistic</Link>
                 </li>

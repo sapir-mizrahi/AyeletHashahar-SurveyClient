@@ -11,13 +11,13 @@ const Column = (props) => {
     data: [{
       type: "column",
       dataPoints: statisticData.map((item) => {
-        debugger
         return { label: item?.ans, y: item?.sum }
       })
-    }]
+    }],
+    height: '300'
   }
   return (
-    <div style={{ margin: "auto", width: "60vw" }}>
+    <div style={{ margin: "auto", width: "400px" }}>
       <CanvasJSChart options={options}
       />
     </div>

@@ -60,7 +60,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function ViewSurvey(
     }
 
     const handleSaveSurvey = async () => {
-        
+
         let surveyAnswers = {
             surveyId: surveyToShow?._id,
             title: surveyToShow?.title,
@@ -123,7 +123,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function ViewSurvey(
                     <Modal.Title>Your feedback has been saved !</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='thank'>Thank you for the answer, for taking the time.
-                    <img src={logoSurvey} className='logo-img1'/>
+                    <img src={logoSurvey} className='logo-img1' />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -132,18 +132,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(function ViewSurvey(
                 </Modal.Footer>
             </Modal>
             <div className='col-4'>
-                <div className='personal'>Public Surveys</div>
-                <div className='all-public-surveys'>
-                    {publicSurveys?.map((item) =>
-                        <div className='survey-name-item' onClick={() => (setSurveyToShow(item), setSurveyToShowAnswers(item?.questions))}>{item?.title}</div>
-                    )}
-                </div>
-                <div className='personal'>Personal Surveys</div>
-                {personalSurveys.length > 0 && <div className='all-public-surveys'>
-                    {personalSurveys?.map((item) =>
-                        <div className='survey-name-item' onClick={() => (setSurveyToShow(item), setSurveyToShowAnswers(item?.questions))}>{item?.title}</div>
-                    )}
-                </div>}
+                {publicSurveys?.length > 0 && <> <div className='personal'>Public Surveys</div>
+                    <div className='all-public-surveys'>
+                        {publicSurveys?.map((item) =>
+                            <div className='survey-name-item' onClick={() => (setSurveyToShow(item), setSurveyToShowAnswers(item?.questions))}>{item?.title}</div>
+                        )}
+                    </div></>}
+                {personalSurveys.length > 0 && JSON.parse(localStorage.getItem('userDetails')) && <> <div className='personal'>Personal Surveys</div>
+                    <div className='all-public-surveys'>
+                        {personalSurveys?.map((item) =>
+                            <div className='survey-name-item' onClick={() => (setSurveyToShow(item), setSurveyToShowAnswers(item?.questions))}>{item?.title}</div>
+                        )}
+                    </div></>}
             </div>
             <div className='col-8'>
                 {!surveyToShow ? <div className='no-selected-div'><FcSurvey className='icon-no' />

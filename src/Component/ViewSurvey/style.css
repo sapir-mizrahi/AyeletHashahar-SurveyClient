@@ -108,8 +108,8 @@ input[type=range] {
 
 .all-public-surveys {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
+    flex-direction: column;
 }
 
 .survey-name-item {
@@ -120,29 +120,41 @@ input[type=range] {
     color: #CB5E1C;
     margin-bottom: 10px;
 }
-.css-187mznn-MuiSlider-root{
+
+.survey-name-item :hover {
+    background-color: #8a8988;
+}
+
+;
+
+.css-187mznn-MuiSlider-root {
     color: #8e9093 !important;
 }
-.radio-check{
+
+.radio-check {
     margin: 10px 0;
 }
-.thank{
+
+.thank {
     display: flex;
     align-content: center;
     align-items: center;
     font-size: 24px;
 }
+
 .logo-img1 {
     height: 200px;
     width: 200px;
     margin: 10px auto 30px auto;
     border-radius: 20px;
 }
-.normal-input{
+
+.normal-input {
     margin-top: 15px;
     width: 90%;
 }
-.rating-values{
+
+.rating-values {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -150,7 +162,8 @@ input[type=range] {
     top: -20px;
     color: #CB5E1C;
 }
-.no-selected-div{
+
+.no-selected-div {
     display: flex;
     align-items: center;
     align-content: center;
@@ -158,16 +171,19 @@ input[type=range] {
     flex-direction: column;
     margin: 100px auto;
 }
-.icon-no{
+
+.icon-no {
     font-size: 90px;
 }
-.no-selected-content{
+
+.no-selected-content {
     font-size: 30px;
     text-align: center;
     margin: 50px;
     width: 40%;
     color: grey;
 }
+
 .link-share {
     display: flex;
     align-items: center;

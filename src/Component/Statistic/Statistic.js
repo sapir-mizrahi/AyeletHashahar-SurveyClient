@@ -6,6 +6,7 @@ import { actions } from '../../Redux/actions';
 import { useEffect } from "react";
 import './style.css';
 import { useState } from "react";
+import { FcComboChart } from 'react-icons/fc';
 
 function mapStateToProps(state) {
     return {
@@ -34,9 +35,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Statistic(p
     const getStatistic = async () => {
         await getSurveysByUserCreated(JSON.parse(localStorage.getItem('userDetails'))?._id)
             .then((res) => {
-
                 let pp = res.filter((ele, ind) => ind === res.findIndex(elem => elem.surveyId === ele.surveyId))
-                console.log(pp);
                 setAllSurveyByUser(pp)
                 setStatistic(res)
 
@@ -50,11 +49,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Statistic(p
         for (let index = 0; index < arr?.length; index++) {
             for (let j = 0; j < arr[index].answers.length; j++) {
                 if (arr[index].answers[j]?.answerType === "multi" || arr[index].answers[j]?.answerType === 'single') {
-
                     for (let k = 0; k < arr[index].answers[j]?.answers.length; k++) {
-                        // if (index === 0) {
                         statisticData.push({ ans: arr[index].answers[j]?.answers[k], sum: 0 })
-                        // }
                     }
                     if (arr[index].answers[j]?.answerType === "multi") {
                         for (let k = 0; k < arr[index].answers[j]?.ans.length; k++) {
@@ -136,63 +132,64 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Statistic(p
         }
         setCurrentSurveyStatistic(arrData)
         let helpArr = []
+        let ans;
         let q;
         let table = [];
-        arr?.map((item) => {
+        arr?.map((item, i) => {
             item?.answers?.map((x) => {
                 if (x?.answerType === 'normal') {
                     debugger
-                    helpArr?.push(x?.ans)
+                    ans = x?.ans
                     q = x?.question
                 }
             })
-            table.push({ question: q, answers: helpArr })
+            if (i === 0) {
+                table.push({ question: q, answers: [ans] })
+            }
+            else {
+                for (let index = 0; index < table.length; index++) {
+                    if (table[index].question === q) {
+                        table[index].answers.push(ans)
+                    }
+                }
+            }
 
         })
         setCurrentTable(table)
-
     }
+    console.log("currentSurveyStatistic", currentSurveyStatistic);
+    console.log("currentTable", currentTable);
     return (
         <div className="statistic-main">
             <div className="div-all-survey-statistic">
+                Your Surveys:
                 {allSurveyByUser?.map((item) =>
                     <div onClick={() => getSurveyStatistic(item?.surveyId)} className="item-survey-statistic">
                         {item?.title}
                     </div>
                 )}
             </div>
-            <div className="generalContainer">
-                {/* <div className="statistic-title">Statistic</div> */}
-                {/* <Pie numberOfUsers={20} usersAge={usersAgesStatistic} /> */}
-                <br />
-                <br />
-                {currentSurveyStatistic?.map((item) =>
-                    <Column title={item?.question} statisticData={item?.statisticData} />
-
-                )}
-                <br />
-                <br />
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    {/* <tbody>
-                        {allPackagesByUser?.packages?.map((item, index) =>
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td>{item?.packageForBuy?.name}</td>
-                                <td>{item?.packageForBuy?.description}</td>
-                                <td>{item?.packageForBuy?.price}</td>
-                            </tr>
-                        )}
-                    </tbody> */}
-                </Table>
-            </div>
+            {currentSurveyStatistic?.length > 0 ?
+                <div className="generalContainer">
+                    {currentSurveyStatistic?.title}
+                    <br />
+                    <br />
+                    {currentSurveyStatistic?.map((item, index) =>
+                        index % 2 === 0 ?
+                            <Column title={item?.question} statisticData={item?.statisticData} />
+                            : <Pie title={item?.question} statisticData={item?.statisticData} />
+                    )}
+                    <br />
+                    <br />
+                    {currentTable?.map((item) => {
+                        return <div className="div-vv">{item?.question}
+                            {item?.answers?.map((x) => {
+                                return <div className="div-xx">{x}</div>
+                            })}</div>
+                    }
+                    )}
+                </div>
+                : <div className="message-cl"><FcComboChart  className="ComboChart"/><br />Click survey to view statistics...</div>}
         </div>);
 }
 )
