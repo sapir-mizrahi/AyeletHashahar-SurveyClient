@@ -1,20 +1,86 @@
 .main-div-create-survey {
     background-color: #f9f9f9;
-    padding: 0 40px;
+    /* padding: 0 40px; */
 }
-h2{
-    margin: 27px;
-    color: #553077 !important;
+
+.setting-div {
+    display: flex;
+    margin: 30px;
+    justify-content: flex-end;
 }
-.first-part-header {
-    
+
+.btn-save-survey {
+    width: 110px !important;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #CB5E1C;
+    color: white;
+    font-size: 21px;
+    font-weight: 500;
 }
-.label-title{
+
+.btn-save-contacts {
+    border-color: #CB5E1C !important;
+    border-radius: 5px;
+    background-color: #eeefef !important;
+    color: #CB5E1C !important;
+    margin-top: 20px;
+}
+
+.title-add-contact {
+    color: #CB5E1C !important;
+}
+
+.btn-add {
+    margin-left: 10px;
+    font-size: 28px;
+    color: #CB5E1C;
+    cursor: pointer;
+}
+
+.main-part {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #CB5E1C;
+    border-radius: 10px;
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-input {
+    margin: 10px 0;
+}
+
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+    color: #CB5E1C !important;
+}
+
+.css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+    border-bottom: 2px solid #CB5E1C !important;
+}
+
+.hh {
+    color: #CB5E1C !important;
+}
+.icon-add-pepole{
+    color: #7b7979;
+    font-size: 26px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.div-add-p{
+    display: flex;
+    align-items: center;
+}
+.label-title {
     font-weight: 500;
     font-size: 18px;
     margin: 5px 0;
 
 }
+
 .left-content-header {
     background-color: white;
     padding: 20px 15px;
@@ -22,17 +88,7 @@ h2{
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-        
-}
 
-.title-input {
-    margin: 10px 0;
-    border: none;
-    border-bottom: 1px solid rgb(170, 169, 172);
-}
-
-.main-part {
-    padding: 30px 0;
 }
 
 .main-part-content {
@@ -41,88 +97,85 @@ h2{
     border: 1px solid #dee2e6;
     border-radius: 10px;
 }
+
 .lable-q {
-    color: #157b7e;
+    color: #989494;
     font-weight: 500;
     font-size: 18px;
     margin: 5px 0;
 }
-.new-question{
+
+.label-title {
+    color: #CB5E1C;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.create-survey-header {
+    background-color: white;
+    margin: 30px auto;
+    border: 1px solid #b4afaf;
+    border-radius: 9px 9px 0 0;
+    padding: 20px;
+    width: 85%;
     display: flex;
     flex-direction: column;
 }
-.btn-add-ans{
+
+.btn-new-survey {
+    padding: 5px 10px;
+    margin: auto;
+    border-radius: 5px;
+    color: #e28a26;
+    border-color: #e28a26;
+}
+
+.logo-img {
+    height: 200px;
+    width: 200px;
+    margin: 10px auto 30px auto;
+    border-radius: 20px;
+}
+
+.message-title {
+    margin-bottom: 30px;
+    font-size: 22px;
+    text-align: center;
+    color: #e28a26;
+    font-weight: 500;
+}
+
+.main-message {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 50px auto;
+}
+
+.new-question {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-add-ans {
     margin: 10px;
     font-size: 16px;
     border-radius: 5px;
-    background-color: #579092;
+    background-color: #CB5E1C;
 }
-.li-ans{
+
+.li-ans {
     margin: 5px 0;
 }
-.label-rating{
-    color: #751c9d;
+
+.label-rating {
+    color: #CB5E1C;
 }
-.btn-add-question{
+
+.btn-add-question {
     height: 80px;
     margin: 30px;
     border-radius: 8px;
     font-size: 20px;
 }
-/* .header-survey {
-    color: #67105f;
-}
-.left-side{
-    background-color: antiquewhite;
-}
-.left-content{
-    width: 80%;
-    background-color: white;
-    border: 1px solid #aeadad;
-    height: 90%;
-    margin: 20px auto;
-    border-radius: 10px;
-
-}
-
-.create-survey-main {
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-    background-color: white;
-    width: 70%;
-    margin: auto;
-}
-
-
-
-input {
-    height: 23px;
-    font-size: 18px;
-    margin: 5px;
-    border-radius: 4px;
-    text-align: center;
-    border-color: #8f8b8b;
-}
-
-input[type=checkbox] {
-    width: 30px;
-}
-
-select {
-    height: 23px;
-    font-size: 18px;
-    margin: 5px;
-    border-radius: 4px;
-    text-align: center;
-    border-color: #8f8b8b;
-}
-
-button {
-    width: 131px;
-    height: 37px;
-    font-size: 17px;
-    background-color: #530c4c;
-    border-radius: 8px;
-    color: #c9c8c8;
-} */

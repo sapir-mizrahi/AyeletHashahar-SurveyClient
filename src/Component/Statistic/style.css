@@ -1,0 +1,29 @@
+.item-survey-statistic:hover {
+    color: #CB5E1C;
+    text-decoration: underline;
+    background-color: rgb(243, 243, 243);
+    padding: 7px;
+    font-size: 18px;
+}
+
+.item-survey-statistic {
+    color: #CB5E1C;
+    padding: 7px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.generalContainer {
+    width: 75%;
+    background-color: rgb(243, 243, 243);
+}
+
+.div-all-survey-statistic {
+    width: 25%;
+}
+
+.statistic-main {
+    display: flex;
+    margin-top: 20px;
+    
+}

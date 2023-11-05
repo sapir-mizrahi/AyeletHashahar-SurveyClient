@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import './style.css';
-// import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { connect } from "react-redux";
 import { actions } from "../../Redux/actions";
+import { MdOutlinePermIdentity } from 'react-icons/md';
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { MdGroupAdd } from 'react-icons/md';
+import { AiOutlinePlusSquare } from 'react-icons/ai';
+import logoSurvey from '../../image/logoSurvey.jpg';
 
-const mapStateToProps = (state) => ({
-    // moviesToView: state.moviesReducer.moviesToView,
-
-})
 const mapDispatchToProps = (dispatch) => {
     return {
         createSurvey: (value) => dispatch(actions.createSurvey(value))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(function SurveyForm(props) {
+export default connect(null, mapDispatchToProps)(function SurveyForm(props) {
     const { createSurvey } = props;
     const [title, setTitle] = useState('');
     const [subTitle, setSubTitle] = useState('');
@@ -24,11 +25,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(function SurveyForm(
     const [isAnonymous, setIsAnonymous] = useState(false);
     const [ratingMin, setRatingMin] = useState('');
     const [ratingMax, setRatingMax] = useState('');
-    const [companyName, setCompanyName] = useState('');
-    // const [survey, setSurvey] = useState([]);
     const [surveyQuestions, setSurveyQuestions] = useState([]);
-    const [surveyColor, setSurveyColor] = useState('#553077');
-
+    const [show, setShow] = useState(false);
+    const [arrContactGroup, setArrContactGroup] = useState([]);
+    const [contentInput, setInputContent] = useState('');
+    const [success, setSuccess] = useState(false);
+    let index = 0;
+    const handleClose = () => setShow(false);
 
     const handleAddAnswer = () => {
         setAnswers([...answers, ""]);
@@ -39,27 +42,34 @@ export default connect(mapStateToProps, mapDispatchToProps)(function SurveyForm(
         updatedAnswers[index] = value;
         setAnswers(updatedAnswers);
     };
-    const saveSurvey = async() => {
+
+    const saveSurvey = async () => {
         const survey = {
             title,
             subTitle,
-            companyName, 
-            isAnonymous,
-            surveyColor,
-            surveyQuestions
+            userId: JSON.parse(localStorage.getItem('userDetails'))?._id,
+            surveyType: isAnonymous,
+            questions: surveyQuestions,
+            surveyGroup: arrContactGroup
         }
-        await createSurvey(survey);
+
+        let res = await createSurvey(survey);
+        if (res?.message === "Create New Survey") {
+            setSuccess(true)
+        }
     }
+
     const handleSurveySubmit = () => {
-        debugger
         const questionObj = {
             question,
             answerType,
             answers,
             ratingMin,
-            ratingMax
+            ratingMax,
+            ans: answerType === "multi" ? [] : ''
         };
-
+        index++;
+        
         setSurveyQuestions([...surveyQuestions, questionObj]);
 
         // Reset form fields
@@ -70,50 +80,60 @@ export default connect(mapStateToProps, mapDispatchToProps)(function SurveyForm(
         setRatingMax('');
     };
 
+    const addMore = () => {
+        setInputContent('')
+        setArrContactGroup([...arrContactGroup, contentInput])
+    }
+
     return (
         <div className='main-div-create-survey'>
-            {/* <h2 className='header-survey'>Create a Survey</h2> */}
-            <button onClick={() => saveSurvey()}>save</button>
-            <div className='row first-part-header'>
-                <div className='col-8 left-content-header' style={{ borderBottom: `5px solid ${surveyColor}` }}>
-                    <label className='label-title' style={{ color: surveyColor }}>
-                        Title:
-                        <Form.Control className='title-input' type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    </label>
-                    <label className='label-title' style={{ color: surveyColor }}>
-                        Sub Title:
-                        <Form.Control className='title-input' type="text" placeholder="Sub Title" value={subTitle} onChange={(e) => setSubTitle(e.target.value)} />
-                    </label>
-                    <label className='lable-q'>
-                        Company Name:
-                        <Form.Control type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder='Company Name' />
-                    </label>
-                </div>
-                <div className='col-2'>
-                    <p>Identification required</p>
-                    <Form.Check // prettier-ignore
-                        type="switch"
-                        id="custom-switch"
-                        checked={isAnonymous}
-                        onChange={(e) => setIsAnonymous(e.target.checked)}
-                    />
-                </div>
-                <div className='col-2'>
-                    {/* <p>Survey <br/> color</p> */}
+            {success ? <div className='main-message'> <div className='message-title'>The survey was successfully saved!</div>
+                <img src={logoSurvey} className='logo-img' />
+                <button className='btn-new-survey' onClick={() => setSuccess(false)}>New</button>
+            </div> :
+                <>
+                    <div className='setting-div'>
+                        <div className='div-add-p'>
+                            <MdGroupAdd className='icon-add-pepole' />
+                            <Form.Check
+                                type="switch"
+                                id="custom-switch"
+                                checked={isAnonymous}
+                                onChange={(e) => (setShow(!show), setIsAnonymous(e.target.checked))}
+                            />
+                        </div>
 
-                    <Form.Control
-                        type="color"
-                        id="exampleColorInput"
-                        defaultValue="#553077"
-                        title="Choose your color"
-                        onChange={(e) => setSurveyColor(e.target.value)}
-                    />
-                </div>
-            </div>
+                        <button className='btn-save-survey' onClick={() => saveSurvey()}>Save</button>
 
-            <div className='main-part'>
-                <div className='row main-part-content'>
-                    <div className='col-9 new-question'>
+                        <Offcanvas show={show} onHide={handleClose} placement='end' >
+                            <Offcanvas.Header closeButton>
+                                <Offcanvas.Title className='title-add-contact'>Add Contact To Survey <MdGroupAdd /></Offcanvas.Title>
+                            </Offcanvas.Header>
+                            <Offcanvas.Body>
+                                {arrContactGroup?.map((item) =>
+                                    <div>{item}</div>
+                                )}
+                                <input style={{ borderColor: 'gray', borderRadius: '5px', marginTop: '20px' }} value={contentInput} onChange={(e) => setInputContent(e.target.value)} />
+                                <AiOutlinePlusSquare className="btn-add" onClick={() => addMore()} />
+                                <div>
+                                    <Button onClick={handleClose} className='btn-save-contacts'>Save</Button>
+                                </div>
+                            </Offcanvas.Body>
+                        </Offcanvas>
+                    </div>
+                    <div className="create-survey-header">
+                        <label className='label-title' >
+                            Title:
+                            <Form.Control className='title-input' type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                        </label>
+                        <label className='label-title' >
+                            Sub Title:
+                            <Form.Control className='title-input' type="text" placeholder="Sub Title" value={subTitle} onChange={(e) => setSubTitle(e.target.value)} />
+                        </label>
+                    </div>
+                    <div className='main-part'>
+
+                        {/* <div className='col-9 new-question'> */}
                         <label className='lable-q'>
                             The Question:
                             <Form.Control value={question} onChange={(e) => setQuestion(e.target.value)} type="text" placeholder="Question" />
@@ -159,38 +179,32 @@ export default connect(mapStateToProps, mapDispatchToProps)(function SurveyForm(
 
 
 
+                        {/* </div> */}
+                        <div className='col-3'>
+                            <button className='btn-add-question' onClick={handleSurveySubmit}>Add Question</button>
+                        </div>
+
+                        <h3>Survey Questions:</h3>
+                        {surveyQuestions.map((questionObj, index) => (
+                            <div key={index}>
+                                <h4>{questionObj.title}</h4>
+                                <p>{questionObj.question}</p>
+                                <p>Answer Type: {questionObj.answerType}</p>
+                                <ul>
+                                    {questionObj.answers.map((answer, i) => (
+                                        <li key={i}>{answer}</li>
+                                    ))}
+                                </ul>
+                                {questionObj.answerType === "rating" ? (
+                                    <p>
+                                        Rating Range: {questionObj.ratingMin} - {questionObj.ratingMax}
+                                    </p>
+                                ) : null}
+                            </div>
+                        ))}
                     </div>
-                    <div className='col-3'>
-                        <button className='btn-add-question' onClick={handleSurveySubmit}>Add Question</button>
-                    </div>
-
-
-
-
-
-                </div>
-                <h3>Survey Questions:</h3>
-                {surveyQuestions.map((questionObj, index) => (
-                    <div key={index}>
-                        <h4>{questionObj.title}</h4>
-                        <p>{questionObj.question}</p>
-                        <p>Answer Type: {questionObj.answerType}</p>
-                        <ul>
-                            {questionObj.answers.map((answer, i) => (
-                                <li key={i}>{answer}</li>
-                            ))}
-                        </ul>
-                        <p>Anonymous: {questionObj.isAnonymous ? "Yes" : "No"}</p>
-                        {questionObj.answerType === "rating" ? (
-                            <p>
-                                Rating Range: {questionObj.ratingMin} - {questionObj.ratingMax}
-                            </p>
-                        ) : null}
-                        <p>Company Name: {questionObj.companyName || "Not provided"}</p>
-                    </div>
-                ))}
-            </div>
-            <div className='col-3'></div>
+                    <div className='col-3'></div>
+                </>}
         </div>
     );
 });

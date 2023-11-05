@@ -1,0 +1,22 @@
+.home-page {
+    background-color: #737373;
+ 
+    flex-direction: column;
+}
+
+.btn-start {
+    width: 120px;
+    margin:10px auto;
+    font-size: 20px;
+    border: 2px solid gray;
+    background-color: #CB5E1C;
+    border-radius: 10px;
+    color: white;
+    
+    font-weight: 500;
+}
+.div-btn{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}

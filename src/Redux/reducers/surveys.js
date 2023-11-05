@@ -12,7 +12,7 @@ const survey = {
   },
 
   setMoviesToView(state, action) {
-    debugger
+    
     state.moviesToView = action.payload;
   },
   setModalShow(state, action) {

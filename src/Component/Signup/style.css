@@ -1,0 +1,40 @@
+.css-1999axt-MuiAvatar-root {
+    background-color: #CB5E1C !important;
+}
+
+.css-binzgt {
+    margin-top: 20px !important;
+}
+
+.css-1vhaqj4-MuiButtonBase-root-MuiButton-root {
+    background-color: #bdbdbd !important;
+}
+
+.css-1n7zltw-MuiButtonBase-root-MuiButton-root {
+    background-color: #bdbdbd !important;
+}
+
+.sign-main {
+    background-color: #f9f9f9;
+}
+
+.profile-img {
+    margin-top: 20px !important;
+    color: #6a6b6c;
+}
+
+.icon-add-img {
+    font-size: 25px
+}
+.profile-image-img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: 2px solid #CB5E1C;
+}
+.upload-img
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
