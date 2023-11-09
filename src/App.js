@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import SurveyForm from './Component/CreateSurvey';
 import ViewSurvey from './Component/ViewSurvey';
@@ -7,7 +7,6 @@ import store from './Redux/store'
 import { Provider } from "react-redux";
 import SignIn from './Component/SignIn';
 import SignUp from './Component/Signup';
-import esty from './image/esty.png';
 import HomePage from './Component/HomePage';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { FcBusinessman } from 'react-icons/fc';
@@ -20,10 +19,6 @@ function App() {
     localStorage.setItem('userDetails', null);
     setUserDetails(JSON.parse(localStorage.getItem('userDetails')))
   }
-
-  // useEffect(() => {
-  //   setUserDetails(JSON.parse(localStorage.getItem('userDetails')));
-  // }, [JSON.parse(localStorage.getItem('userDetails'))]);
 
   return (
     <div className="App">

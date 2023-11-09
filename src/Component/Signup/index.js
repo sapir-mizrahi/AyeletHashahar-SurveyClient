@@ -14,7 +14,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './style.css';
 import { BiImageAdd } from 'react-icons/bi';
-// import { signIn, signUp } from '../Services/user'
 import {
     Alert
 } from '@mui/material';

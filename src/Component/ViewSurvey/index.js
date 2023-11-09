@@ -29,7 +29,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(function ViewSurvey(
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     useEffect(() => {
         getSurveys();

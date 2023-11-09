@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './style.css';
 import { connect } from "react-redux";
 import { actions } from "../../Redux/actions";
 import startVideo from '../../image/videoSurvey.mp4';
 import { useNavigate } from 'react-router';
-const mapStateToProps = (state) => ({
-    // moviesToView: state.moviesReducer.moviesToView,
 
-})
 const mapDispatchToProps = (dispatch) => {
     return {
         getAllSurveys: () => dispatch(actions.getAllSurveys()),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(function HomePage(props) {
+export default connect(null, mapDispatchToProps)(function HomePage(props) {
     const { getAllSurveys } = props;
     const navigate = useNavigate()
     const letStartFunc = () => {

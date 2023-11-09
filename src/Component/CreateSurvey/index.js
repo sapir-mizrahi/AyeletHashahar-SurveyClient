@@ -132,8 +132,6 @@ export default connect(null, mapDispatchToProps)(function SurveyForm(props) {
                         </label>
                     </div>
                     <div className='main-part'>
-
-                        {/* <div className='col-9 new-question'> */}
                         <label className='lable-q'>
                             The Question:
                             <Form.Control value={question} onChange={(e) => setQuestion(e.target.value)} type="text" placeholder="Question" />

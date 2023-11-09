@@ -1,6 +1,5 @@
 import Column from "./Column";
 import Pie from "./Pie";
-import Table from 'react-bootstrap/Table';
 import { connect } from 'react-redux';
 import { actions } from '../../Redux/actions';
 import { useEffect } from "react";
@@ -8,21 +7,13 @@ import './style.css';
 import { useState } from "react";
 import { FcComboChart } from 'react-icons/fc';
 
-function mapStateToProps(state) {
-    return {
-        // allUsers: state.usersReducer.allUsers,
-        // allPackagesByUser: state.packagesByUserReducer.allPackagesByUser,
-        // allPackages: state.packagesReducer.packages
-    }
-}
+
 const mapDispatchToProps = (dispatch) => ({
     getSurveysByUserCreated: (userId) => dispatch(actions.getSurveysByUserCreated(userId)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(function Statistic(props) {
-    let usersAge = { "age10": 5, "age20": 5, "age30": 5, "age40": 5, "age50": 5, "age60": 5 }
+export default connect(null, mapDispatchToProps)(function Statistic(props) {
     const { getSurveysByUserCreated } = props;
-    const [usersAgesStatistic, setUsersAgesStatistic] = useState({});
     const [statistic, setStatistic] = useState();
     const [allSurveyByUser, setAllSurveyByUser] = useState();
     const [currentSurveyStatistic, setCurrentSurveyStatistic] = useState();
@@ -30,8 +21,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Statistic(p
 
     useEffect(() => {
         getStatistic();
-
     }, []);
+
     const getStatistic = async () => {
         await getSurveysByUserCreated(JSON.parse(localStorage.getItem('userDetails'))?._id)
             .then((res) => {
@@ -59,7 +50,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Statistic(p
                                 if (statisticData[x].ans === b) {
                                     statisticData[x].sum++
                                 }
-
                             }
                         }
                     }
@@ -131,7 +121,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Statistic(p
             }
         }
         setCurrentSurveyStatistic(arrData)
-        let helpArr = []
         let ans;
         let q;
         let table = [];

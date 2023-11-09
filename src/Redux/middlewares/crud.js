@@ -86,7 +86,7 @@ export const createSurveyAnswers = () => next => action => {
     })
       .then((response) => response.json())
       .then((data) => {
-        
+
         console.log("success", data);
         return data;
       })
@@ -106,7 +106,7 @@ export const getSurveysByUserCreated =
           return fetch(`${url}/statistic/${action.payload}`)
             .then((response) => response.json())
             .then((data) => {
-              
+
               return data?.data
             });
         }
